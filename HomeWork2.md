@@ -103,12 +103,14 @@ the program at optimization level one and then using the following site
 each one the optimizations to the program and made it. While lots of
 optimizations decreased the time bit by bit I noticed that the
 <b>-fcaller-saves</b> optimization decreased the amount of time that the code
-to run by about 2 seconds. 
+to run by about 2 seconds from what we see as the average time to run code
+at Level 1 Optimization.
 <p>
 
-<img src="">INSERT IMAGE HERE</img>
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/OptimizationSnip/Timing.PNG"></img>
+<p><i>With <b>-fcaller-saves</b></i><p>
 
-##Problem 5
+<h2>Problem 5</h2>
 ___
 <center><h3>Data Collection Methodology</h3></center>
 <p>
@@ -260,3 +262,14 @@ through hyperthreading each core has two threads. Using the Scalasca utility I
 was able to determine which lines the thread was spending most of its time. The
 screen shot below is from the results I gathered. 
 </p>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/NoWaitSnip/NoWait.PNG"></src>
+<i>Omp for with nowait</i>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/NoWaitSnip/Wait.PNG"></img>
+<i>Omp for without nowait(Code as originally provided)</i>
+
+
+```python
+
+```
