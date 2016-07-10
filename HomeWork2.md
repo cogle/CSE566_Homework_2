@@ -3,6 +3,126 @@
 ## Christopher Ogle
 ___
 
+## Monte Carlo Algorithm Analysis
+___
+
+<p>
+For this particular assignment we were tasked with creating a Monte Carlo
+Version of the provided algorithm. So for my implementation the time that the
+algorithm takes to converge is painstakingly slow. Much, much slower than the
+Gradient Descent algorithm. I sort of expected it to be slow, but I did not
+expect it to be this slow. One of the main reasons that this algorithm is so
+slow is because of the snippet of code below.
+</p>
+
+
+```python
+  while(run)
+  {
+    int cont = 0;
+    my_diff = 0.0;
+    printf("Currently running on iteration number %d with diff %f\n", iteration_number, diff);
+    diff = 0.0;
+    iteration_number++;
+    #pragma omp parallel shared(u, diff) private(i, j, cur, mean, temp_i, temp_j) reduction(+ : cont)
+    {
+      srand((int)time(NULL) ^ omp_get_thread_num());
+      for(i = 1; i < M-1; i++)
+      {
+        #pragma omp for
+        for(j = 1; j < N-1; j++)
+        {
+          mean = 0.0;
+          for(cur = 0; cur < ITER; cur++)
+          {
+            temp_i = i;
+            temp_j = j;
+            while(1)
+            {
+              int direction = rand()%4;
+              //Go towards the i = 0 row 
+              if(direction == 0)
+              {
+                temp_i--;
+                if(temp_i == 0){mean += 0.0; break;}
+              }
+              //Go towards the j = 0 col 
+              else if(direction == 1)
+              {
+                temp_j--;
+                if(temp_j == 0){mean += 100.0; break;}
+              }
+              //Go towards the i = M row 
+              else if(direction == 2)
+              {
+                temp_i++;
+                if(temp_i == (M-1)){mean += 100.0; break;}
+              }
+              //Go towards the j = N col 
+              else
+              {
+                temp_j++;
+                if(temp_j == (N-1)){mean += 100.0; break;}
+              }
+            }
+          }
+          double old = u[i][j];
+          if(iteration_number == 0)
+          {
+             u[i][j] = (double) (u[i][j] + mean)/(ITER + 1);
+          }
+          else
+          {
+            double cur_iter = (double) iteration_number * ITER;
+            double prev_avg = (double) cur_iter * u[i][j];
+            u[i][j] = (double) (prev_avg + mean) / (cur_iter + ITER); 
+          }
+          if( fabs(old - u[i][j])  > epsilon)
+          {
+            if( fabs(old - u[i][j]) > my_diff)
+            {
+              my_diff = fabs(old - u[i][j]);
+            }
+            cont++;
+          }
+        }
+      }
+    #pragma omp critical
+    {
+      if(my_diff > diff){diff = my_diff;}
+    }
+    }
+    if(cont == 0){run = 0;}
+  }
+```
+
+<p>
+This snippet of code is the main logic behind my algorithm. The reason that this
+particular piece of code takes so much longer is that we are using a
+non-deterministic method in order to try and solve the problem. While the
+gradient descent iterates a definite amounts of times per iteration. The
+Monte Carlo has no such upper limit. Given that each time through the algorithm
+it must iterate until it reaches an edge those points in the middle will take
+a large amount of time in order to complete their journey to the edge. In
+addition as we increase the size of the graph this only makes the algorithm have
+to work more. Given that points in the center of graph are further away from the
+edge it will take much longer to reach the edge. 
+</p>
+<p>
+Another thing that really is difficult with this algorithm is that the
+difference between the previous value at the spot and the current may jump
+around quite a bit, Because this does not always decrease it can be a real pain
+to have to calculate. In fact I think if I tried it on a large array like
+40 by 40, I would most likely overflow the numbers as I am taking the weighted
+average and calculation how many previous iteration I have taken would be a
+very large number. One thing that can be done to try and combat this to increase
+the number of times that you run the algorithm per given iteration. While this
+helps due to the Law of Large Numbers again you run into the problem of this
+algorithm, as written, taking a long time, increasing the number of iterations 
+you take in the while loop will nondeterministically increase number of 
+iterations of the algorithm.
+</p>
+
 ## Problem 3
 ___
 <center><h3>Data Collection Methodology</h3></center>
@@ -271,6 +391,25 @@ screen shot below is from the results I gathered.
 
 <img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/NoWaitSnip/10_threads.PNG"><img>
 <i>Omp for running 10 Threads</i>
+
+<p>
+From the above screenshots we see that indeed making the code not wait did have
+a significant difference. However, it did not speed it up to the speeds of the
+ten thread run. So while we were able to speed up the speed a good amount we
+still see that there is a lot of difference between running the code with 14
+threads and 10 threads. This leads me to believe that the code is not being
+optimized well by OpenMP. Another interesting observation is that the poor
+timing continues up until the maximum number of threads has been reached, and
+then immediately after that the numbers return a decent level. I would suspect
+that there is sub-optimal distribution of the work going on with the threads.
+</p>
+<p>
+In addition one of the things that I thought might be hindering the performance
+is that as we increase the number of threads and each core now shares multiple
+threads the cache will get written over much more frequently resulting in more
+cache misses. This doesn't explain the results that we saw, with there being 
+a sharp jump in time, but it could be a contributing factor. 
+</p>
 
 
 ```python

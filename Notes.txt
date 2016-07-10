@@ -1,3 +1,34 @@
+For this particular assignment we were tasked with creating a Monte Carlo
+Version of the provided algorithm. So for my implementation the time that the
+algorithm takes to converge is painstakingly slow. Much, much slower than the
+Gradient Descent algorithm. I sort of expected it to be slow, but I did not
+expect it to be this slow. One of the main reasons that this algorithm is so
+slow is because of the snippet of code below.
+
+
+This snippet of code is the main logic behind my algorithm. The reason that this
+particular piece of code takes so much longer is that we are using a
+non-deterministic method in order to try and solve the problem. While the
+gradient descent iterates a definite amounts of times per iteration. The
+Monte Carlo has no such upper limit. Given that each time through the algorithm
+it must iterate until it reaches an edge those points in the middle will take
+a large amount of time in order to complete their journey to the edge. In
+addition as we increase the size of the graph this only makes the algorithm have
+to work more. Given that points in the center of graph are further away from the
+edge it will take much longer to reach the edge.
+
+Another thing that really is difficult with this algorithm is that the
+difference between the previous value at the spot and the current may jump
+around quite a bit, Because this does not always decrease it can be a real pain
+to have to calculate. In fact I think if I tried it on a large array like
+40 by 40, I would most likely overflow the numbers as I am taking the weighted
+average and calculation how many previous iteration I have taken would be a
+very large number. One thing that can be done to try and combat this to increase
+the number of times that you run the algorithm per given iteration. While this
+helps due to the Law of Large Numbers again you run into the problem of this
+algorithm, as written, taking a long time. 
+
+
 Looking at the graph above we can clearly see the trend that as you increase the
 optimization level the time required to run the algorithm decreases as well too.
 In the previous assignment we saw that as the optimization level increased, that
@@ -47,3 +78,9 @@ optimized well by OpenMP. Another interesting observation is that the poor
 timing continues up until the maximum number of threads has been reached, and
 then immediately after that the numbers return a decent level. I would suspect
 that there is sub-optimal distribution of the work going on with the threads.
+
+In addition one of the things that I thought might be hindering the performance
+is that as we increase the number of threads and each core now shares multiple
+threads the cache will get written over much more frequently resulting in more
+cache misses. This doesn't explain the results that we saw, with there being
+a sharp jump in time, but it could be a contributing factor.
