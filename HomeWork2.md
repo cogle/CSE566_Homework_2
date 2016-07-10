@@ -264,10 +264,13 @@ screen shot below is from the results I gathered.
 </p>
 
 <img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/NoWaitSnip/NoWait.PNG"></src>
-<i>Omp for with nowait</i>
+<i>Omp for with nowait 14 Threads</i>
 
 <img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/NoWaitSnip/Wait.PNG"></img>
-<i>Omp for without nowait(Code as originally provided)</i>
+<i>Omp for without nowait 14 Threads(Code as originally provided)</i>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/NoWaitSnip/10_threads.PNG"><img>
+<i>Omp for running 10 Threads</i>
 
 
 ```python

@@ -36,4 +36,14 @@ Intel® Xeon® Processor E5-2630 v3 (20M Cache, 2.40 GHz), from the manufacturer
 spec sheet we that this has 8 physical cores while supporting 16 threads;
 through hyperthreading each core has two threads. Using the Scalasca utility I
 was able to determine which lines the thread was spending most of its time. The
-screen shot below is from the results I gathered. 
+screen shot below is from the results I gathered.
+
+From the above screenshots we see that indeed making the code not wait did have
+a significant difference. However, it did not speed it up to the speeds of the
+ten thread run. So while we were able to speed up the speed a good amount we
+still see that there is a lot of difference between running the code with 14
+threads and 10 threads. This leads me to believe that the code is not being
+optimized well by OpenMP. Another interesting observation is that the poor
+timing continues up until the maximum number of threads has been reached, and
+then immediately after that the numbers return a decent level. I would suspect
+that there is sub-optimal distribution of the work going on with the threads.
