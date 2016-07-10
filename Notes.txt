@@ -1,0 +1,39 @@
+Looking at the graph above we can clearly see the trend that as you increase the
+optimization level the time required to run the algorithm decreases as well too.
+In the previous assignment we saw that as the optimization level increased, that
+didn't always correspond in an increase in time.
+As stated above this particular experiment used 4 threads; one of the things
+that using 4 threads allows us to do is that we can take advantage assigning
+each thread to its own core. This allows each thread to take advantage of cache
+locality when iterating through the for loops. In addition when the compiler
+optimizes the code each OpenMP thread receives the optimized code. This allows
+each of the threads to run that optimized code, and results in further speed
+ups.
+
+In order to try and determine what lead to such a drop in the speed I compiled
+the program at optimization level one and then using the following site
+<a>https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html</a> I applied
+each one the optimizations to the program and made it. While lots of
+optimizations decreased the time bit by bit I noticed that the
+<b>-fcaller-saves</b> decreased the amount of time that the code to run by about
+2 seconds.
+
+
+For this particular problem the data was collected by running the supplied code
+compiled with optimization level two on the schools system. As before the basis
+of our  time measurement comes from the in code timing hooks.
+
+
+The results for this problem are certainly very surprising. I ran the test
+multiple times because I was in such disbelief about the results, but despite
+this the results remained the same.
+
+It would appear that as we up until 12 threads we were getting the results that
+we expected as more threads were added a gradual decrease in time take was
+achieved. However, when using 13 to 16 threads the number of time it takes
+skyrockets. Using the <b>lscpu</b> command we can determine that our CPU is a
+Intel® Xeon® Processor E5-2630 v3 (20M Cache, 2.40 GHz), from the manufacturer's
+spec sheet we that this has 8 physical cores while supporting 16 threads;
+through hyperthreading each core has two threads. Using the Scalasca utility I
+was able to determine which lines the thread was spending most of its time. The
+screen shot below is from the results I gathered. 
