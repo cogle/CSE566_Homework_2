@@ -1,0 +1,185 @@
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 400 by 400 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.937343
+
+ Iteration  Change
+
+         1  18.734336
+         2  9.367168
+         4  4.098136
+         8  2.289193
+        16  1.136414
+        32  0.568106
+        64  0.282757
+       128  0.141753
+       256  0.070796
+       512  0.035421
+      1024  0.017704
+      2048  0.008854
+      4096  0.004426
+      8192  0.002165
+
+     15095  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 1.948594
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 400 by 400 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.937343
+
+ Iteration  Change
+
+         1  18.734336
+         2  9.367168
+         4  4.098136
+         8  2.289193
+        16  1.136414
+        32  0.568106
+        64  0.282757
+       128  0.141753
+       256  0.070796
+       512  0.035421
+      1024  0.017704
+      2048  0.008854
+      4096  0.004426
+      8192  0.002165
+
+     15095  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 1.932207
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 400 by 400 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.937343
+
+ Iteration  Change
+
+         1  18.734336
+         2  9.367168
+         4  4.098136
+         8  2.289193
+        16  1.136414
+        32  0.568106
+        64  0.282757
+       128  0.141753
+       256  0.070796
+       512  0.035421
+      1024  0.017704
+      2048  0.008854
+      4096  0.004426
+      8192  0.002165
+
+     15095  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 1.939529
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 400 by 400 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.937343
+
+ Iteration  Change
+
+         1  18.734336
+         2  9.367168
+         4  4.098136
+         8  2.289193
+        16  1.136414
+        32  0.568106
+        64  0.282757
+       128  0.141753
+       256  0.070796
+       512  0.035421
+      1024  0.017704
+      2048  0.008854
+      4096  0.004426
+      8192  0.002165
+
+     15095  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 1.938243
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 400 by 400 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.937343
+
+ Iteration  Change
+
+         1  18.734336
+         2  9.367168
+         4  4.098136
+         8  2.289193
+        16  1.136414
+        32  0.568106
+        64  0.282757
+       128  0.141753
+       256  0.070796
+       512  0.035421
+      1024  0.017704
+      2048  0.008854
+      4096  0.004426
+      8192  0.002165
+
+     15095  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 1.944792
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.

@@ -1,0 +1,190 @@
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 1200 by 1200 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.979149
+
+ Iteration  Change
+
+         1  18.744787
+         2  9.372394
+         4  4.100422
+         8  2.290470
+        16  1.137048
+        32  0.568423
+        64  0.282915
+       128  0.141832
+       256  0.070836
+       512  0.035441
+      1024  0.017714
+      2048  0.008859
+      4096  0.004429
+      8192  0.002215
+     16384  0.001107
+
+     18143  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 19.551888
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 1200 by 1200 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.979149
+
+ Iteration  Change
+
+         1  18.744787
+         2  9.372394
+         4  4.100422
+         8  2.290470
+        16  1.137048
+        32  0.568423
+        64  0.282915
+       128  0.141832
+       256  0.070836
+       512  0.035441
+      1024  0.017714
+      2048  0.008859
+      4096  0.004429
+      8192  0.002215
+     16384  0.001107
+
+     18143  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 19.000210
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 1200 by 1200 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.979149
+
+ Iteration  Change
+
+         1  18.744787
+         2  9.372394
+         4  4.100422
+         8  2.290470
+        16  1.137048
+        32  0.568423
+        64  0.282915
+       128  0.141832
+       256  0.070836
+       512  0.035441
+      1024  0.017714
+      2048  0.008859
+      4096  0.004429
+      8192  0.002215
+     16384  0.001107
+
+     18143  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 19.613453
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 1200 by 1200 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.979149
+
+ Iteration  Change
+
+         1  18.744787
+         2  9.372394
+         4  4.100422
+         8  2.290470
+        16  1.137048
+        32  0.568423
+        64  0.282915
+       128  0.141832
+       256  0.070836
+       512  0.035441
+      1024  0.017714
+      2048  0.008859
+      4096  0.004429
+      8192  0.002215
+     16384  0.001107
+
+     18143  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 19.400393
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
+
+HEATED_PLATE_OPEN_MP
+  C/OpenMP version
+  A program to solve for the steady state temperature distribution
+  over a rectangular plate.
+
+  Spatial grid of 1200 by 1200 points.
+  The iteration will be repeated until the change is <= 1.000000e-03
+  Number of processors available = 16
+  Number of threads =              4
+
+  MEAN = 74.979149
+
+ Iteration  Change
+
+         1  18.744787
+         2  9.372394
+         4  4.100422
+         8  2.290470
+        16  1.137048
+        32  0.568423
+        64  0.282915
+       128  0.141832
+       256  0.070836
+       512  0.035441
+      1024  0.017714
+      2048  0.008859
+      4096  0.004429
+      8192  0.002215
+     16384  0.001107
+
+     18143  0.001000
+
+  Error tolerance achieved.
+  Wallclock time = 18.937407
+
+HEATED_PLATE_OPEN_MP:
+  Normal end of execution.
