@@ -19,8 +19,8 @@ edge it will take much longer to reach the edge.
 
 Another thing that really is difficult with this algorithm is that the
 difference between the previous value at the spot and the current may jump
-around quite a bit, Because this does not always decrease it can be a real pain
-to have to calculate. In fact I think if I tried it on a large array like
+around quite a bit, Because this value does not always decrease it can be a real
+pain to have to calculate. In fact I think if I tried it on a large array like
 40 by 40, I would most likely overflow the numbers as I am taking the weighted
 average and calculation how many previous iteration I have taken would be a
 very large number. One thing that can be done to try and combat this to increase
@@ -28,9 +28,17 @@ the number of times that you run the algorithm per given iteration. While this
 helps due to the Law of Large Numbers again you run into the problem of this
 algorithm, as written, taking a long time, increasing the number of iterations
 you take in the while loop will nondeterministically increase the number of
-inner loop iterations of the algorithm. 
+inner loop iterations of the algorithm.
 
-For a simple
+<i>For a simple 12 by 12 grid with an <b>ITER</b> value of 1000</i>
+
+
+Looking at this picture we can see just how much slower this implementation of
+the algorithm is the small graph takes nearly 13 minutes to complete. In
+addition the large variance between runs can be seen, which really inhibits one
+from determining when this algorithm will reach termination. If one has the time
+and is trying to simulation the randomness of particles then, this method might
+be the best; however I would prefer the provided code over this algorithm. 
 
 
 Looking at the graph above we can clearly see the trend that as you increase the

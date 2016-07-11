@@ -8,11 +8,11 @@ ___
 
 <p>
 For this particular assignment we were tasked with creating a Monte Carlo
-Version of the provided algorithm. So for my implementation the time that the
+Version of the provided algorithm. For my implementation the time that the
 algorithm takes to converge is painstakingly slow. Much, much slower than the
 Gradient Descent algorithm. I sort of expected it to be slow, but I did not
-expect it to be this slow. One of the main reasons that this algorithm is so
-slow is because of the snippet of code below.
+expect it to be this slow. Below is a snippet of the critical section of my
+code and following that is an explanation of why my version is so slow.
 </p>
 
 
@@ -121,6 +121,18 @@ helps due to the Law of Large Numbers again you run into the problem of this
 algorithm, as written, taking a long time, increasing the number of iterations 
 you take in the while loop will nondeterministically increase number of 
 iterations of the algorithm.
+</p>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/Monte/Flucation.PNG"></img>
+<i>For a simple 12 by 12 grid with an <b>ITER</b> value of 1000</i>
+
+<p>
+Looking at this picture we can see just how much slower this implementation of
+the algorithm is the small graph takes nearly 13 minutes to complete. In
+addition the large variance between runs can be seen, which really inhibits one
+from determining when this algorithm will reach termination. If one has the time
+and is trying to simulation the randomness of particles then, this method might
+be the best; however I would prefer the provided code over this algorithm.
 </p>
 
 ## Problem 3
