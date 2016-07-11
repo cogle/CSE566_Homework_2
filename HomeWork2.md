@@ -110,9 +110,9 @@ edge it will take much longer to reach the edge.
 </p>
 <p>
 Another thing that really is difficult with this algorithm is that the
-difference between the previous value at the spot and the current may jump
-around quite a bit, Because this does not always decrease it can be a real pain
-to have to calculate. In fact I think if I tried it on a large array like
+difference between the previous value at the new value may jump
+around quite a bit. Because this does not always decrease it can be a real pain
+to have to run this algorithm. In fact I think if I tried it on a large array like
 40 by 40, I would most likely overflow the numbers as I am taking the weighted
 average and calculation how many previous iteration I have taken would be a
 very large number. One thing that can be done to try and combat this to increase
@@ -241,6 +241,217 @@ at Level 1 Optimization.
 
 <img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/OptimizationSnip/Timing.PNG"></img>
 <p><i>With <b>-fcaller-saves</b></i><p>
+
+<h2>Problem 4</h2>
+___
+<center><h3>Data Collection Methodology</h3></center>
+<p>
+For this particular problem the data was collected by running the supplied code
+compiled with optimization level two on the schools system with 4 threads. As 
+before the basis of our  time measurement comes from the in code timing hooks. 
+</p>
+
+
+```python
+import plotly.plotly as py
+import plotly.graph_objs as go
+from plotly.tools import FigureFactory as FF 
+
+# Create random data with numpy
+import numpy as np
+
+x = ['50', '100', '150' ,'200', '250',
+     '300', '400', '500' ,'600', '700',
+     '800', '900', '1000' ,'1100', '1200',
+     '1300', '1400', '1500']
+
+
+size_50 = [0.014645,0.014547,0.014831,0.014647,0.014675]
+size_100 = [0.065983,0.066967,0.066720,0.068457,0.064742]
+size_150 = [0.147041,0.148926,0.155783,0.151992,0.154726]
+size_200 = [0.336146,0.333026,0.330973,0.333543,0.335950]
+size_250 = [0.615197,0.621354,0.614993,0.615967,0.612557]
+size_300 = [0.987381,0.984063,0.965989,0.964826,0.969361]
+size_400 = [1.948594,1.932207,1.939529,1.938243,1.944792]
+size_500 = [3.216002,3.201695,3.212385,3.561511,3.218516]
+size_600 = [4.700759,4.745719,4.745413,4.839352,4.810836]
+size_700 = [6.468956,6.435122,6.446439,6.355941,6.335129]
+size_800 = [9.214062,9.086559,8.918791,9.023419,8.997899]
+size_900 = [10.900986,11.079394,10.756924,10.719667,10.764894]
+size_1000 = [13.107303,13.938686,13.401571,13.119014,13.222637]
+size_1100 = [15.861555,15.932275,16.226205,15.939537,16.243901]
+size_1200 = [19.551888,19.000210,19.613453,19.400393,18.937407]
+size_1300 = [23.125764,24.162420,23.157251,36.779754,23.727463]
+size_1400 = [47.653508,39.049947,39.391193,41.874674,47.111895]
+size_1500 = [57.264617,55.271507,58.151817,57.803165,58.615409]
+
+
+
+y0 = [np.average(size_50),
+      np.average(size_100),
+      np.average(size_150),
+      np.average(size_200),
+      np.average(size_250),
+      np.average(size_300),
+      np.average(size_400),
+      np.average(size_500),
+      np.average(size_600),
+      np.average(size_700),
+      np.average(size_800),
+      np.average(size_900),
+      np.average(size_1000),
+      np.average(size_1100),
+      np.average(size_1200),
+      np.average(size_1300),
+      np.average(size_1400),
+      np.average(size_1500)
+     ]
+
+
+# Create traces
+trace0 = go.Scatter(
+    x = x,
+    y = y0,
+    mode = 'lines+markers',
+    name = 'r = vM (Default)',
+    error_y=dict(
+        type='data',
+        array=[np.std(size_50), 
+               np.std(size_100),
+               np.std(size_150),
+               np.std(size_200),
+               np.std(size_250),
+               np.std(size_300),
+               np.std(size_400),
+               np.std(size_500),
+               np.std(size_600),
+               np.std(size_700),
+               np.std(size_800),
+               np.std(size_900),
+               np.std(size_1000),
+               np.std(size_1100),
+               np.std(size_1200),
+               np.std(size_1300),
+               np.std(size_1400),
+               np.std(size_1500)],
+        visible=True
+    )
+)
+
+data = [trace0]
+layout=go.Layout(height=1000,
+                 title="OpenMP: Time to run vs Array Size", 
+                 xaxis={'title':'Size of Array (N x N)'}, 
+                 yaxis={'title':'Time(sec)'})
+
+figure=go.Figure(data=data,layout=layout)
+py.iplot(figure, filename='Thread-Timing-Array')
+```
+
+
+
+
+<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~cogle/24.embed" height="1000px" width="100%"></iframe>
+
+
+
+<div>
+    <a href="https://plot.ly/~cogle/24/" target="_blank" 
+       title="OpenMP: Time to run vs Number of Threads" 
+       style="display: block; text-align: center;">
+       
+        <img src="https://plot.ly/~cogle/24.png" alt="OpenMP: Time to run vs Number of Threads" 
+             style="max-height:1000"  
+             onerror="this.onerror=null;this.src='https://plot.ly/404.png';" />
+    </a>
+    <script data-plotly="cogle:22"  src="https://plot.ly/embed.js" async></script>
+</div>
+
+
+```python
+import plotly.plotly as py
+import plotly.graph_objs as go
+from plotly.tools import FigureFactory as FF 
+
+# Create random data with numpy
+import numpy as np
+
+x = ['1.0', '1.0^-1', '1.0^-2' ,'1.0^-3', '1.0^-4',
+     '1.0^-5', '1.0^-6', '1.0^-7' ,'1.0^-8']
+
+
+ep_1 = [0.008293,0.008271,0.008236,0.008312,0.008446]
+ep_01 = [0.066485,0.065135,0.063764,0.063592,0.064369]
+ep_001 = [0.416287,0.414127,0.417072,0.413306,0.412400]
+ep_0001 = [3.464793,3.223525,3.149614,3.224029,3.139216]
+ep_00001 = [10.518056,10.734608,10.768388,10.229248,10.420260]
+ep_000001 = [18.615514,19.272254,18.676508,18.874452,18.847971]
+ep_0000001 = [26.936042,26.929934,27.576725,27.761543,27.062500]
+ep_00000001 = [38.918818,36.855797,38.565591,36.609836,36.874943]
+ep_000000001 = [49.057643,50.395065,47.806317,49.886437,49.790664]
+
+
+y0 = [np.average(ep_1),
+      np.average(ep_01),
+      np.average(ep_001),
+      np.average(ep_0001),
+      np.average(ep_00001),
+      np.average(ep_000001),
+      np.average(ep_0000001),
+      np.average(ep_00000001),
+      np.average(ep_000000001)
+     ]
+
+
+# Create traces
+trace0 = go.Scatter(
+    x = x,
+    y = y0,
+    mode = 'lines+markers',
+    name = 'r = vM (Default)',
+    error_y=dict(
+        type='data',
+        array=[np.std(ep_1), 
+               np.std(ep_01),
+               np.std(ep_001),
+               np.std(ep_00001),
+               np.std(ep_000001),
+               np.std(ep_0000001),
+               np.std(ep_00000001),
+               np.std(ep_000000001)
+              ],
+        visible=True
+    )
+)
+
+data = [trace0]
+layout=go.Layout(height=1000,
+                 title="OpenMP: Time to run(500x500 4 Threads) vs Epsilon Precision", 
+                 xaxis={'title':'Value of Epsilon'}, 
+                 yaxis={'title':'Time(sec)'})
+
+figure=go.Figure(data=data,layout=layout)
+py.iplot(figure, filename='Epsilon-Timing-Array')
+```
+
+
+
+
+<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~cogle/26.embed" height="1000px" width="100%"></iframe>
+
+
+
+<div>
+    <a href="https://plot.ly/~cogle/26/" target="_blank" 
+       title="OpenMP: Time to run(500x500 4 Threads) vs Epsilon Precision" 
+       style="display: block; text-align: center;">
+       
+        <img src="https://plot.ly/~cogle/26.png" alt="OpenMP: Time to run(500x500 4 Threads) vs Epsilon Precision" 
+             style="max-height:1000"  
+             onerror="this.onerror=null;this.src='https://plot.ly/404.png';" />
+    </a>
+    <script data-plotly="cogle:22"  src="https://plot.ly/embed.js" async></script>
+</div>
 
 <h2>Problem 5</h2>
 ___
