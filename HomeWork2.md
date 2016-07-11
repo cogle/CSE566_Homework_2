@@ -355,6 +355,11 @@ py.iplot(figure, filename='Thread-Timing-Array')
 
 
 
+<center><h3>Hypothesis</h3></center>
+<p>
+The provided algorithm’s time complexity is O(n^2); with this knowledge we can predict that our graph should resemble a parabolic curve.
+</p>
+
 <div>
     <a href="https://plot.ly/~cogle/24/" target="_blank" 
        title="OpenMP: Time to run vs Number of Threads" 
@@ -366,6 +371,11 @@ py.iplot(figure, filename='Thread-Timing-Array')
     </a>
     <script data-plotly="cogle:22"  src="https://plot.ly/embed.js" async></script>
 </div>
+
+<center><h3>OpenMP Array Size Dependence Data Analysis</h3></center>
+<p>
+From the graph we see exactly what we predicted in our Hypothesis. It is really nice to see that our algorithm follows hypothesis. With the introduction of threads some might think that our algorithm should run faster; however, the way our program works is we divide up the work amongst the threads thus as we increase the size of the array each thread receives n^2 more work.  The results that we saw weren’t too surprising and fell in line with what was expected.
+</p>
 
 
 ```python
@@ -441,6 +451,11 @@ py.iplot(figure, filename='Epsilon-Timing-Array')
 
 
 
+<center><h3>Hypothesis</h3></center>
+<p>
+I am not 100% sure how this graph will look but since for this problem I am reducing epsilon by a power of ten each time so it might resemble a logarithmic graph.
+</p>
+
 <div>
     <a href="https://plot.ly/~cogle/26/" target="_blank" 
        title="OpenMP: Time to run(500x500 4 Threads) vs Epsilon Precision" 
@@ -452,6 +467,11 @@ py.iplot(figure, filename='Epsilon-Timing-Array')
     </a>
     <script data-plotly="cogle:22"  src="https://plot.ly/embed.js" async></script>
 </div>
+
+<center><h3>OpenMP Epsilon Value Dependence Data Analysis</h3></center>
+<p>
+From the graph we see that while it does resemble something of a logarithmic graph without an equation we cannot be 100%. Of course though the results are as expected as we decrease the value of epsilon the number of iterations that the algorithm will require to converge will be greater as we are demanding more precision from the algorithm thus our time for termination will take longer.
+</p>
 
 <h2>Problem 5</h2>
 ___
@@ -632,6 +652,35 @@ is that as we increase the number of threads and each core now shares multiple
 threads the cache will get written over much more frequently resulting in more
 cache misses. This doesn't explain the results that we saw, with there being 
 a sharp jump in time, but it could be a contributing factor. 
+</p>
+
+<center><h2>Conclusion</h2></center>
+<p>
+Overall the greatest difficulty I had with this problem was the Monte Carlo Algorithm. I am still not 100% my implementation is correct or optimal. The algorithm runs very slow and is very, computational intensive. In addition, the random movements that this algorithm required introduces a real source of uncertainty into the time complexity. It is my belief that because of the random walking our algorithm falls short compared to the Gradient Descent algorithm. In that algorithm it simply has to loop over and average the four corners. Our algorithm has to make its way to a corner and then repeat this process multiple times. This is a real time suck. Finding our way from inner part of the matrix to an outer edge, from the center, will at best take 250 steps. Then we must repeat this process an undefined number of times. Thus the time complexity of the algorithm quickly blows up at this step. Another thing I found that is the value of the of epsilon in the in the Monte Carlo algorithm is really volatile. Because of the way the algorithm works I feel that values in the center have the most volatility. While those values at the edges will most likely reach a stable value rather quickly the values in the center may in one given run go to the top run and then on the next run may go to left or right. This then gives us two different values. While the numbers I believe do converge do to the Law of Large Numbers the time that it takes is very long.   
+</p>
+
+<p>
+Another thing that I noticed was that when using Scalasca in order to try and 
+determine how long a program took I was outputting various time for how long
+the program actually took to run. 
+For instance using the command line and asking how long the program ran resulted 
+in this measurement being given.
+</p>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/Scalasca/TimeDifference.PNG"></img>
+
+<p>However opening up the GUI gave this measurement</p>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/Scalasca/TimeDifferenceOnScore.PNG"></src>
+
+<p>Finally the program's critical section only took this long to run</p>
+
+<img src="https://raw.githubusercontent.com/cogle/CSE566_Homework_2/master/Results/Scalasca/ProgramOutput.PNG"></src>
+
+<p>
+Each of the Scalasca's time is a different value, and much longer than how long
+the actual program ran. Because of these discrepancies I relied on the timing
+hooks within the code as the basis of my measurements.
 </p>
 
 
